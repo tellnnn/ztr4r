@@ -7,18 +7,17 @@
 # ------------------------------ #
 #' Set HTTP headers.
 #'
-#' Set HTTP headers that used for sending requests.
+#' @param name A `character` string.
 #'
-#' Specifically, the returned HTTP header includes (1) Zotero API version and (2) Zotero API key. Please see `get_api_version()` and `get_api_key()` for details, respectively.
-#'
-#' @param name A `character` string. This specifies which of your API keys to be used. Even for a public library, `name` is required. `name` is passed to `get_api_key()` function.
-#'
-#' @return `httr::add_headers()` with "Zotero-API-Version" and "Zotero-API-Key".
+#' @return `httr::add_headers()`
 #'
 #' @importFrom stringr str_length
 #' @importFrom httr add_headers
 #'
-#' @examples set_headers(name = "your_api_key_name")
+#' @examples
+#' \dontrun{
+#' set_headers(name = "your_api_key_name")
+#' }
 set_headers <- function(name) {
   # validate input
   stopifnot(
@@ -39,16 +38,15 @@ set_headers <- function(name) {
 # ------------------------------ #
 #         get_api_version        #
 # ------------------------------ #
-
-#' Get Zotero API version
+#' Get Zotero Web API version
 #'
-#' Get Zotero API version. Currently, the version 3 is supported.
+#' @return Zotero Web API version in `integer`.
 #'
-#' @return Zotero API version in `integer`.
-#'
-#' @examples get_api_version()
+#' @examples
+#' \dontrun{
+#' get_api_version()
+#' }
 get_api_version <- function() {
-  # return Zotero API version
   return(3)
 }
 
@@ -56,19 +54,18 @@ get_api_version <- function() {
 # ------------------------------ #
 #          get_api_key           #
 # ------------------------------ #
-#' Get Zotero API key
+#' Get Zotero Web API key
 #'
-#' Get Zotero API key specified with the `name`.
+#' @param name A `character` string.
 #'
-#'This function calls `load_api_key()` first. `load_api_key()` tries to load the cached API key specified with the `name` from a cache directory for `ztr4r` (see `api_key_path()` for its path). If `load_api_key()` successfully loads the API key, it will be used for the current session. Otherwise, `create_api_key()` will be called successively. It will create a new API key set by asking several user inputs, and store it with the `name` into the cache directory. The stored API key will be used for the current session.
-#'
-#' @param name A `character` string. This specifies which of your API keys to be used. Even for a public library, `name` is required.
-#'
-#' @return Zotero API key. Either a `character` (private library) string or `NULL` (public library).
+#' @return Zotero Web API key in either a `character` string (private library) or `NULL` (public library).
 #'
 #' @importFrom stringr str_length
 #'
-#' @examples get_api_key(name = "your_api_key_name")
+#' @examples
+#' \dontrun{
+#' get_api_key(name = "your_api_key_name")
+#' }
 get_api_key <- function(name) {
   # validate input
   stopifnot(
@@ -76,11 +73,11 @@ get_api_key <- function(name) {
     str_length(name) > 0
   )
 
-  # load and assign an object that includes API key onto the `.env_ztr4r` environment
-  .env_ztr4r$auth <- load_api_key(name = name)
-  # or create an object that includes API key and assign it onto the `.env_ztr4r`
+  # load a list that contains API key and assign it onto the `.env_ztr4r`
+  assign(x = "auth", value = load_api_key(name = name), envir = .env_ztr4r)
+  # or create a list that contains API key and assign it onto the `.env_ztr4r`
   if(is.null(.env_ztr4r$auth)) {
-    .env_ztr4r$auth <- create_api_key(name = name)
+    assign(x = "auth", value = create_api_key(name = name), envir = .env_ztr4r)
   }
 
   # return API key
@@ -91,19 +88,18 @@ get_api_key <- function(name) {
 # ------------------------------ #
 #          load_api_key          #
 # ------------------------------ #
-#' Load a cached Zotero API key
+#' Load a cached Zotero Web API key
 #'
-#' Load a cached Zotero API key specified with the `name`.
+#' @param name A `character` string.
 #'
-#' This function tries to load a cached API key under the user cached directory. The directory path will be specified with `api_key_path()`. If this function successfully loads the cached API key, it will return an R object that includes the API key and other information. Otherwise, this function always returns `NULL`.
-#'
-#' @param name A `character` string. This specifies which of your API keys to be used. Even for a public library, `name` is required.
-#'
-#' @return Either an R object that includes the API key and other information or `NULL`.
+#' @return Either a `list` that contains the API key or `NULL`.
 #'
 #' @importFrom stringr str_length
 #'
-#' @examples load_api_key(name = "your_api_key_name")
+#' @examples
+#' \dontrun{
+#' load_api_key(name = "your_api_key_name")
+#' }
 load_api_key <- function(name) {
   # validate input
   stopifnot(
@@ -118,7 +114,7 @@ load_api_key <- function(name) {
     # read the file and return it
     return(readRDS(file = fpath))
   } else {
-    message("The specified API key has not been found in the user cache directory.")
+    message("The specified API key has not been found in the user data directory.")
     # return NULL
     return(NULL)
   }
@@ -128,17 +124,18 @@ load_api_key <- function(name) {
 # ------------------------------ #
 #         create_api_key         #
 # ------------------------------ #
-#' Create a new API key
+#' Create a new Zotero Web API key
 #'
-#' This function creates a new API key with the `name` and several user inputs. Thus, this function should be called interactively.
+#' @param name A `character` string.
 #'
-#' @param name A `character` string. This specifies the name of a new API key. Even for a public library, `name` is required to store the user/group ID, the privacy setting, and so on.
-#'
-#' @return An R object that includes the API key and other information
+#' @return A `list` that contains the API key.
 #'
 #' @importFrom stringr str_length
 #'
-#' @examples create_api_key(name = "your_api_key_name")
+#' @examples
+#' \dontrun{
+#' create_api_key(name = "your_api_key_name")
+#' }
 create_api_key <- function(name) {
   # validate input
   stopifnot(
@@ -197,20 +194,19 @@ create_api_key <- function(name) {
 # ------------------------------ #
 #          save_api_key          #
 # ------------------------------ #
-#' Save API key
+#' Save Zotero Web API key
 #'
-#' Save an API key in the user cache directory
-#'
-#' This function saves the API key (`list`) created in the `create_api_key()` under the user cache directory in the `.rds` file format.
-#'
-#' @param name A `character` string. This specifies the name of a new API key. Even for a public library, `name` is required.
-#' @param auth A `list` created in the `create_api_key()`.
+#' @param name A `character` string.
+#' @param auth A `list` created by `create_api_key()`.
 #'
 #' @return `NULL`
 #'
 #' @importFrom utils askYesNo
 #'
-#' @examples save_api_key(name = "your_api_key_name", auth = auth)
+#' @examples
+#' \dontrun{
+#' save_api_key(name = "your_api_key_name", auth = auth)
+#' }
 save_api_key <- function(name, auth) {
   # validate input
   stopifnot(
@@ -241,18 +237,19 @@ save_api_key <- function(name, auth) {
 # ------------------------------ #
 #          api_key_path          #
 # ------------------------------ #
-#' Get API key path
+#' Get Zotero Web API key path
 #'
-#' Get the absolute path to the API key path
+#' @param name A `character` string.
 #'
-#' @param name A `character` string. This specifies the name of a new API key. Even for a public library, `name` is required.
-#'
-#' @return A `character` string. This specifies the absolute path to a RDS file that stores API key.
+#' @return A `character` string.
 #'
 #' @importFrom stringr str_length
 #' @importFrom rappdirs user_data_dir
 #'
-#' @examples api_key_path(name = "your_api_key_name")
+#' @examples
+#' \dontrun{
+#' api_key_path(name = "your_api_key_name")
+#' }
 api_key_path <- function(name) {
   # validate input
   stopifnot(

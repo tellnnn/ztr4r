@@ -7,17 +7,16 @@
 set_headers(name)
 }
 \arguments{
-\item{name}{A \code{character} string. This specifies which of your API keys to be used. Even for a public library, \code{name} is required. \code{name} is passed to \code{get_api_key()} function.}
+\item{name}{A \code{character} string.}
 }
 \value{
-\code{httr::add_headers()} with "Zotero-API-Version" and "Zotero-API-Key".
+\code{httr::add_headers()}
 }
 \description{
-Set HTTP headers that used for sending requests.
-}
-\details{
-Specifically, the returned HTTP header includes (1) Zotero API version and (2) Zotero API key. Please see \code{get_api_version()} and \code{get_api_key()} for details, respectively.
+Set HTTP headers.
 }
 \examples{
+\dontrun{
 set_headers(name = "your_api_key_name")
+}
 }

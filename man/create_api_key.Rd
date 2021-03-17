@@ -2,19 +2,21 @@
 % Please edit documentation in R/api_utils.R
 \name{create_api_key}
 \alias{create_api_key}
-\title{Create a new API key}
+\title{Create a new Zotero Web API key}
 \usage{
 create_api_key(name)
 }
 \arguments{
-\item{name}{A \code{character} string. This specifies the name of a new API key. Even for a public library, \code{name} is required to store the user/group ID, the privacy setting, and so on.}
+\item{name}{A \code{character} string.}
 }
 \value{
-An R object that includes the API key and other information
+A \code{list} that contains the API key.
 }
 \description{
-This function creates a new API key with the \code{name} and several user inputs. Thus, this function should be called interactively.
+Create a new Zotero Web API key
 }
 \examples{
+\dontrun{
 create_api_key(name = "your_api_key_name")
+}
 }

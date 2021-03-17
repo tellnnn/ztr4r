@@ -2,24 +2,23 @@
 % Please edit documentation in R/api_utils.R
 \name{save_api_key}
 \alias{save_api_key}
-\title{Save API key}
+\title{Save Zotero Web API key}
 \usage{
 save_api_key(name, auth)
 }
 \arguments{
-\item{name}{A \code{character} string. This specifies the name of a new API key. Even for a public library, \code{name} is required.}
+\item{name}{A \code{character} string.}
 
-\item{auth}{A \code{list} created in the \code{create_api_key()}.}
+\item{auth}{A \code{list} created by \code{create_api_key()}.}
 }
 \value{
 \code{NULL}
 }
 \description{
-Save an API key in the user cache directory
-}
-\details{
-This function saves the API key (\code{list}) created in the \code{create_api_key()} under the user cache directory in the \code{.rds} file format.
+Save Zotero Web API key
 }
 \examples{
+\dontrun{
 save_api_key(name = "your_api_key_name", auth = auth)
+}
 }

@@ -2,16 +2,18 @@
 % Please edit documentation in R/api_utils.R
 \name{get_api_version}
 \alias{get_api_version}
-\title{Get Zotero API version}
+\title{Get Zotero Web API version}
 \usage{
 get_api_version()
 }
 \value{
-Zotero API version in \code{integer}.
+Zotero Web API version in \code{integer}.
 }
 \description{
-Get Zotero API version. Currently, the version 3 is supported.
+Get Zotero Web API version
 }
 \examples{
+\dontrun{
 get_api_version()
+}
 }

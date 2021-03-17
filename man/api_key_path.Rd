@@ -2,19 +2,21 @@
 % Please edit documentation in R/api_utils.R
 \name{api_key_path}
 \alias{api_key_path}
-\title{Get API key path}
+\title{Get Zotero Web API key path}
 \usage{
 api_key_path(name)
 }
 \arguments{
-\item{name}{A \code{character} string. This specifies the name of a new API key. Even for a public library, \code{name} is required.}
+\item{name}{A \code{character} string.}
 }
 \value{
-A \code{character} string. This specifies the absolute path to a RDS file that stores API key.
+A \code{character} string.
 }
 \description{
-Get the absolute path to the API key path
+Get Zotero Web API key path
 }
 \examples{
+\dontrun{
 api_key_path(name = "your_api_key_name")
+}
 }

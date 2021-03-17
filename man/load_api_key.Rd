@@ -2,22 +2,21 @@
 % Please edit documentation in R/api_utils.R
 \name{load_api_key}
 \alias{load_api_key}
-\title{Load a cached Zotero API key}
+\title{Load a cached Zotero Web API key}
 \usage{
 load_api_key(name)
 }
 \arguments{
-\item{name}{A \code{character} string. This specifies which of your API keys to be used. Even for a public library, \code{name} is required.}
+\item{name}{A \code{character} string.}
 }
 \value{
-Either an R object that includes the API key and other information or \code{NULL}.
+Either a \code{list} that contains the API key or \code{NULL}.
 }
 \description{
-Load a cached Zotero API key specified with the \code{name}.
-}
-\details{
-This function tries to load a cached API key under the user cached directory. The directory path will be specified with \code{api_key_path()}. If this function successfully loads the cached API key, it will return an R object that includes the API key and other information. Otherwise, this function always returns \code{NULL}.
+Load a cached Zotero Web API key
 }
 \examples{
+\dontrun{
 load_api_key(name = "your_api_key_name")
+}
 }
