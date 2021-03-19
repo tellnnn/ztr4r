@@ -244,7 +244,6 @@ save_api_key <- function(name, auth) {
 #' @return A `character` string.
 #'
 #' @importFrom stringr str_length
-#' @importFrom rappdirs user_data_dir
 #'
 #' @examples
 #' \dontrun{
@@ -257,10 +256,5 @@ api_key_path <- function(name) {
     str_length(name) > 0
   )
 
-  return(
-    file.path(
-      user_data_dir(appname = "ztr4r", appauthor = "R"),
-      paste0(name, ".rds")
-    )
-  )
+  return(file.path(dir_path, paste0(name, ".rds")))
 }
