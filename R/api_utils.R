@@ -3,35 +3,6 @@
 
 
 # ------------------------------ #
-#           set_headers          #
-# ------------------------------ #
-#' Set HTTP headers.
-#'
-#' @param name A `character` string.
-#'
-#' @return `httr::add_headers()`
-#'
-#' @examples
-#' \dontrun{
-#' set_headers(name = "your_api_key_name")
-#' }
-set_headers <- function(name) {
-  # validate input
-  stopifnot(
-    stringr::str_length(name) > 0
-  )
-
-  # return headers
-  return(
-    httr::add_headers(
-      "Zotero-API-Version" = get_api_version(),
-      "Zotero-API-Key" = get_api_key(name = name)
-    )
-  )
-}
-
-
-# ------------------------------ #
 #         get_api_version        #
 # ------------------------------ #
 #' Get Zotero Web API version
