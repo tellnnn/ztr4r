@@ -11,9 +11,6 @@
 #'
 #' @return `httr::add_headers()`
 #'
-#' @importFrom stringr str_length
-#' @importFrom httr add_headers
-#'
 #' @examples
 #' \dontrun{
 #' set_headers(name = "your_api_key_name")
@@ -21,13 +18,12 @@
 set_headers <- function(name) {
   # validate input
   stopifnot(
-    is.character(name),
-    str_length(name) > 0
+    stringr::str_length(name) > 0
   )
 
   # return headers
   return(
-    add_headers(
+    httr::add_headers(
       "Zotero-API-Version" = get_api_version(),
       "Zotero-API-Key" = get_api_key(name = name)
     )
@@ -60,8 +56,6 @@ get_api_version <- function() {
 #'
 #' @return Zotero Web API key in either a `character` string (private library) or `NULL` (public library).
 #'
-#' @importFrom stringr str_length
-#'
 #' @examples
 #' \dontrun{
 #' get_api_key(name = "your_api_key_name")
@@ -69,8 +63,7 @@ get_api_version <- function() {
 get_api_key <- function(name) {
   # validate input
   stopifnot(
-    is.character(name),
-    str_length(name) > 0
+    stringr::str_length(name) > 0
   )
 
   # load a list that contains API key and assign it onto the `.env_ztr4r`
@@ -94,8 +87,6 @@ get_api_key <- function(name) {
 #'
 #' @return Either a `list` that contains the API key or `NULL`.
 #'
-#' @importFrom stringr str_length
-#'
 #' @examples
 #' \dontrun{
 #' load_api_key(name = "your_api_key_name")
@@ -103,8 +94,7 @@ get_api_key <- function(name) {
 load_api_key <- function(name) {
   # validate input
   stopifnot(
-    is.character(name),
-    str_length(name) > 0
+    stringr::str_length(name) > 0
   )
 
   # get the file path
@@ -130,8 +120,6 @@ load_api_key <- function(name) {
 #'
 #' @return A `list` that contains the API key.
 #'
-#' @importFrom stringr str_length
-#'
 #' @examples
 #' \dontrun{
 #' create_api_key(name = "your_api_key_name")
@@ -140,8 +128,7 @@ create_api_key <- function(name) {
   # validate input
   stopifnot(
     interactive(),
-    is.character(name),
-    str_length(name) > 0
+    stringr::str_length(name) > 0
   )
 
   # greet
@@ -170,9 +157,9 @@ create_api_key <- function(name) {
   # validate privacy, api_key, library_type, and id
   stopifnot(
     privacy %in% c("private","public"), # privacy
-    (is.null(api_key) || str_length(api_key) > 0), # api_key
+    (is.null(api_key) || stringr::str_length(api_key) > 0), # api_key
     library_type %in% c("users", "groups"), # library_type
-    str_length(id) > 0, # id
+    stringr::str_length(id) > 0, # id
   )
 
   auth <- list(
@@ -201,8 +188,6 @@ create_api_key <- function(name) {
 #'
 #' @return `NULL`
 #'
-#' @importFrom utils askYesNo
-#'
 #' @examples
 #' \dontrun{
 #' save_api_key(name = "your_api_key_name", auth = auth)
@@ -210,8 +195,7 @@ create_api_key <- function(name) {
 save_api_key <- function(name, auth) {
   # validate input
   stopifnot(
-    is.character(name),
-    str_length(name) > 0,
+    stringr::str_length(name) > 0,
     is.list(auth),
     all(c("name", "ID", "type", "privacy", "key") %in% names(auth))
   )
@@ -221,7 +205,7 @@ save_api_key <- function(name, auth) {
   # check existence
   overwrite <- TRUE
   if (file.exists(fpath)) {
-    overwrite <- askYesNo(msg = paste0("API key named as ", name, " already exists. Overwrite?"))
+    overwrite <- utils::askYesNo(msg = paste0("API key named as ", name, " already exists. Overwrite?"))
   }
 
   if (isTRUE(overwrite)) {
@@ -243,8 +227,6 @@ save_api_key <- function(name, auth) {
 #'
 #' @return A `character` string.
 #'
-#' @importFrom stringr str_length
-#'
 #' @examples
 #' \dontrun{
 #' api_key_path(name = "your_api_key_name")
@@ -252,8 +234,7 @@ save_api_key <- function(name, auth) {
 api_key_path <- function(name) {
   # validate input
   stopifnot(
-    is.character(name),
-    str_length(name) > 0
+    stringr::str_length(name) > 0
   )
 
   return(file.path(dir_path, paste0(name, ".rds")))
