@@ -5,14 +5,7 @@
 # ------------------------------ #
 #         get_api_version        #
 # ------------------------------ #
-#' Get Zotero Web API version
-#'
-#' @return Zotero Web API version in `integer`.
-#'
-#' @examples
-#' \dontrun{
-#' get_api_version()
-#' }
+# Get Zotero Web API version
 get_api_version <- function() {
   return(3)
 }
@@ -21,22 +14,14 @@ get_api_version <- function() {
 # ------------------------------ #
 #          get_api_key           #
 # ------------------------------ #
-#' Get Zotero Web API key
-#'
-#' @param name A `character` string.
-#'
-#' @return Zotero Web API key in either a `character` string (private library) or `NULL` (public library).
-#'
-#' @examples
-#' \dontrun{
-#' get_api_key(name = "your_api_key_name")
-#' }
+# Get Zotero Web API key
 get_api_key <- function(name) {
   # validate input
   stopifnot(
     stringr::str_length(name) > 0
   )
 
+  # check if there is a loaded list object
   if (!exists("auth", envir = .env_ztr4r)) {
     # load a list that contains API key and assign it onto the `.env_ztr4r`
     assign(x = "auth", value = load_api_key(name = name), envir = .env_ztr4r)
@@ -54,16 +39,7 @@ get_api_key <- function(name) {
 # ------------------------------ #
 #          load_api_key          #
 # ------------------------------ #
-#' Load a cached Zotero Web API key
-#'
-#' @param name A `character` string.
-#'
-#' @return Either a `list` that contains the API key or `NULL`.
-#'
-#' @examples
-#' \dontrun{
-#' load_api_key(name = "your_api_key_name")
-#' }
+# Load a cached Zotero Web API key
 load_api_key <- function(name) {
   # validate input
   stopifnot(
@@ -87,16 +63,7 @@ load_api_key <- function(name) {
 # ------------------------------ #
 #         create_api_key         #
 # ------------------------------ #
-#' Create a new Zotero Web API key
-#'
-#' @param name A `character` string.
-#'
-#' @return A `list` that contains the API key.
-#'
-#' @examples
-#' \dontrun{
-#' create_api_key(name = "your_api_key_name")
-#' }
+# Create a new Zotero Web API key
 create_api_key <- function(name) {
   # validate input
   stopifnot(
@@ -154,17 +121,7 @@ create_api_key <- function(name) {
 # ------------------------------ #
 #          save_api_key          #
 # ------------------------------ #
-#' Save Zotero Web API key
-#'
-#' @param name A `character` string.
-#' @param auth A `list` created by `create_api_key()`.
-#'
-#' @return `NULL`
-#'
-#' @examples
-#' \dontrun{
-#' save_api_key(name = "your_api_key_name", auth = auth)
-#' }
+# Save Zotero Web API key
 save_api_key <- function(name, auth) {
   # validate input
   stopifnot(
@@ -194,16 +151,7 @@ save_api_key <- function(name, auth) {
 # ------------------------------ #
 #          api_key_path          #
 # ------------------------------ #
-#' Get Zotero Web API key path
-#'
-#' @param name A `character` string.
-#'
-#' @return A `character` string.
-#'
-#' @examples
-#' \dontrun{
-#' api_key_path(name = "your_api_key_name")
-#' }
+# Get Zotero Web API key path
 api_key_path <- function(name) {
   # validate input
   stopifnot(
