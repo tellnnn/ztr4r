@@ -12,31 +12,6 @@ get_api_version <- function() {
 
 
 # ------------------------------ #
-#          get_api_key           #
-# ------------------------------ #
-# Get Zotero Web API key
-get_api_key <- function(name) {
-  # validate input
-  stopifnot(
-    stringr::str_length(name) > 0
-  )
-
-  # check if there is a loaded list object
-  if (!exists("auth", envir = .env_ztr4r)) {
-    # load a list that contains API key and assign it onto the `.env_ztr4r`
-    assign(x = "auth", value = load_api_key(name = name), envir = .env_ztr4r)
-    # or create a list that contains API key and assign it onto the `.env_ztr4r`
-    if(is.null(.env_ztr4r$auth)) {
-      assign(x = "auth", value = create_api_key(name = name), envir = .env_ztr4r)
-    }
-  }
-
-  # return API key
-  return(.env_ztr4r$auth$api_key)
-}
-
-
-# ------------------------------ #
 #          load_api_key          #
 # ------------------------------ #
 # Load a cached Zotero Web API key
@@ -97,17 +72,17 @@ create_api_key <- function(name) {
   # validate privacy, api_key, library_type, and id
   stopifnot(
     privacy %in% c("private","public"), # privacy
-    (is.null(api_key) || stringr::str_length(api_key) > 0), # api_key
+    (is.null(api_key) || (stringr::str_length(api_key) > 0)), # api_key
     library_type %in% c("users", "groups"), # library_type
-    stringr::str_length(id) > 0, # id
+    stringr::str_length(id) > 0 # id
   )
 
   auth <- list(
     name = name,
-    ID = id,
-    type = library_type,
+    id = id,
+    library_type = library_type,
     privacy = privacy,
-    key = api_key
+    api_key = api_key
   )
 
   # save auth
@@ -127,7 +102,7 @@ save_api_key <- function(name, auth) {
   stopifnot(
     stringr::str_length(name) > 0,
     is.list(auth),
-    all(c("name", "ID", "type", "privacy", "key") %in% names(auth))
+    all(c("name", "id", "library_type", "privacy", "api_key") %in% names(auth))
   )
 
   # set the file path
