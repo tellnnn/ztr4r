@@ -8,11 +8,6 @@
 \description{
 ztr4r provides users Zotero Web API wrapper in R and a tool set for manipulating the contents in a Zotero library.
 }
-\examples{
-\dontrun{
-library(ztr4r)
-}
-}
 \author{
 \strong{Maintainer}: Teruaki Kido \email{tellurium3262@gmail.com}
 
