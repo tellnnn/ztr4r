@@ -37,11 +37,13 @@ get_api_key <- function(name) {
     stringr::str_length(name) > 0
   )
 
-  # load a list that contains API key and assign it onto the `.env_ztr4r`
-  assign(x = "auth", value = load_api_key(name = name), envir = .env_ztr4r)
-  # or create a list that contains API key and assign it onto the `.env_ztr4r`
-  if(is.null(.env_ztr4r$auth)) {
-    assign(x = "auth", value = create_api_key(name = name), envir = .env_ztr4r)
+  if (!exists("auth", envir = .env_ztr4r)) {
+    # load a list that contains API key and assign it onto the `.env_ztr4r`
+    assign(x = "auth", value = load_api_key(name = name), envir = .env_ztr4r)
+    # or create a list that contains API key and assign it onto the `.env_ztr4r`
+    if(is.null(.env_ztr4r$auth)) {
+      assign(x = "auth", value = create_api_key(name = name), envir = .env_ztr4r)
+    }
   }
 
   # return API key
