@@ -17,4 +17,5 @@ Imports:
     httr,
     rappdirs,
     utils,
-    rlang
+    rlang,
+    R6
