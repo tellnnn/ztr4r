@@ -4,10 +4,7 @@
 #' @keywords internal
 "_PACKAGE"
 
-
 #' @importFrom rlang %||%
-#' @export
-rlang::`%||%`
 
 # The user data directory where user information is stored.
 # check if there is the user data directory
