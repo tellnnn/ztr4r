@@ -133,5 +133,5 @@ api_key_path <- function(name) {
     stringr::str_length(name) > 0
   )
 
-  return(file.path(dir_path, paste0(name, ".rds")))
+  return(file.path(user_dir_path, paste0(name, ".rds")))
 }
