@@ -23,7 +23,14 @@ Zotero <- R6::R6Class("Zotero",
 
   public = list(
     #' @field cache Cached request table
-    cache = NULL,
+    cache = tibble::tibble(
+      datetime = lubridate::NA_POSIXct_,
+      url = NA_character_,
+      status = NA_integer_,
+      last_modified_version = NA_character_,
+      content_type = NA_character_,
+      .rows = 0
+    ),
 
     #' @description Create a new `Zotero` object
     #' @param name Name of Zotero Web API key
@@ -78,6 +85,8 @@ Zotero <- R6::R6Class("Zotero",
         httr::timeout(seconds = as.integer(timeout)),
         httr::user_agent(agent = "https://github.com/tellnnn/ztr4r")
       )
+      # add cache
+      private$cache_request(response)
       # check response
       httr::stop_for_status(response)
       # return response
@@ -85,7 +94,24 @@ Zotero <- R6::R6Class("Zotero",
     }
   ),
 
-  private = list(name = NULL, id = NULL, library_type = NULL, privacy = NULL, api_key = NULL),
+  private = list(
+    name = NULL,
+    id = NULL,
+    library_type = NULL,
+    privacy = NULL,
+    api_key = NULL,
+    cache_request = function(response) {
+      self$cache <-
+        self$cache %>%
+        tibble::add_row(
+          datetime = response$date,
+          url = response$url,
+          status = httr::status_code(response),
+          last_modified_version = response$headers$`last-modified-version`,
+          content_type = response$headers$`content-type`
+        )
+    }
+  ),
   lock_objects = TRUE,
   lock_class = TRUE,
   cloneable = FALSE
