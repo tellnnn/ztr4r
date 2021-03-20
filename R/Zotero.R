@@ -65,7 +65,7 @@ Zotero <- R6::R6Class("Zotero",
       # validate inputs
       stopifnot(
         verb %in% c("GET","POST"),
-        is.integer(timeout)
+        is.numeric(timeout)
       )
       # send request
       response <- httr::VERB(
@@ -75,7 +75,7 @@ Zotero <- R6::R6Class("Zotero",
                                query = rlang::dots_list(...)),
         httr::add_headers("Zotero-API-Version" = get_api_version(),
                           "Zotero-API-Key" = private$api_key),
-        httr::timeout(seconds = timeout),
+        httr::timeout(seconds = as.integer(timeout)),
         httr::user_agent(agent = "https://github.com/tellnnn/ztr4r")
       )
       # check response
