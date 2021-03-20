@@ -18,4 +18,7 @@ Imports:
     rappdirs,
     utils,
     rlang,
-    R6
+    R6,
+    tibble,
+    lubridate,
+    magrittr
