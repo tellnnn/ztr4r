@@ -5,6 +5,9 @@
 "_PACKAGE"
 
 #' @importFrom rlang %||%
+#' @importFrom magrittr %>%
+#' @export
+magrittr::`%>%`
 
 # The user data directory where user information is stored.
 # check if there is the user data directory
