@@ -9,6 +9,9 @@
 #' @keywords internal
 "_PACKAGE"
 
+#' @import rlang
+NULL
+
 # The internal environment where user information is stored for a session.
 .env_ztr4r <- new.env(parent = emptyenv())
 
