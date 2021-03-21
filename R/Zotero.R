@@ -24,7 +24,7 @@ Zotero <- R6::R6Class("Zotero",
   public = list(
     #' @field cache Cached request table
     cache = tibble::tibble(
-      datetime = lubridate::NA_POSIXct_,
+      timestamp = lubridate::NA_POSIXct_,
       url = NA_character_,
       status = NA_integer_,
       last_modified_version = NA_character_,
@@ -104,7 +104,7 @@ Zotero <- R6::R6Class("Zotero",
       self$cache <-
         self$cache %>%
         tibble::add_row(
-          datetime = response$date,
+          timestamp = response$date,
           url = response$url,
           status = httr::status_code(response),
           last_modified_version = response$headers$`last-modified-version`,
