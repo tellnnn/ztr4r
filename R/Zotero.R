@@ -104,7 +104,7 @@ Zotero <- R6::R6Class("Zotero",
       self$cache <-
         self$cache %>%
         tibble::add_row(
-          timestamp = response$date,
+          timestamp = lubridate::with_tz(response$date, tz = Sys.timezone()),
           url = response$url,
           status = httr::status_code(response),
           last_modified_version = response$headers$`last-modified-version`,
