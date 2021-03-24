@@ -127,7 +127,7 @@ and provides (1) <code>print</code> and (2) <code>request</code> method</p>
 
     <h2 class="hasAnchor" id="public-fields"><a class="anchor" href="#public-fields"></a>Public fields</h2>
 
-    <p><div class="r6-fields"></p><dl'>
+    <p><div class="r6-fields"></p><dl>
 <dt><code>name</code></dt><dd><p>Name of Zotero Web API Key</p></dd>
 
 <dt><code>library_type</code></dt><dd><p>Library Type. <code>"users"</code> or <code>"groups"</code></p></dd>
@@ -140,7 +140,7 @@ and provides (1) <code>print</code> and (2) <code>request</code> method</p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
-<h3>Public methods</h3>
+<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Public methods</h3>
 
 <ul>
 <li><p><a href='#method-new'><code>Zotero$new()</code></a></p></li>
@@ -148,31 +148,31 @@ and provides (1) <code>print</code> and (2) <code>request</code> method</p>
 <li><p><a href='#method-request'><code>Zotero$request()</code></a></p></li>
 </ul>
 <p><hr>
-<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
-<p>Create a new <code>Zotero</code> object</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>Zotero</span>$<span class='fu'>new</span>(<span class='no'>name</span>)</pre><p></div></p>
+<a id="method-new"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>new()</code></h3>
+<p>Create a new <code>Zotero</code> object</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>Zotero</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span></pre><p></div></p>
 
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
 <dt><code>name</code></dt><dd><p>Name of Zotero Web API key</p></dd>
 
 </dl><p></div></p>
-<h3>Returns</h3>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Returns</h4>
 <p>A new <code>Zotero</code> object</p>
 <p><hr>
-<a id="method-print"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/print.html'>print()</a></code></h3>
-<p>Print a <code>Zotero</code> object</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>Zotero</span>$<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>()</pre><p></div></p>
+<a id="method-print"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code><a href='https://rdrr.io/r/base/print.html'>print()</a></code></h3>
+<p>Print a <code>Zotero</code> object</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>Zotero</span><span class='op'>$</span><span class='fu'>print</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
 
-<h3>Returns</h3>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Returns</h4>
 <p>None</p>
 <p><hr>
-<a id="method-request"></a></p><h3>Method <code>request()</code></h3>
-<p>Send request</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>Zotero</span>$<span class='fu'>request</span>(<span class='no'>verb</span>, <span class='no'>path</span>, <span class='no'>key</span>, <span class='no'>...</span>, <span class='no'>timeout</span>)</pre><p></div></p>
+<a id="method-request"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>request()</code></h3>
+<p>Send request</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>Zotero</span><span class='op'>$</span><span class='fu'>request</span><span class='op'>(</span><span class='va'>verb</span>, <span class='va'>path</span>, <span class='va'>key</span>, <span class='va'>...</span>, <span class='va'>timeout</span><span class='op'>)</span></pre><p></div></p>
 
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
 <dt><code>verb</code></dt><dd><p>Request verb. Either <code>"GET"</code> or <code>"POST"</code></p></dd>
 
 <dt><code>path</code></dt><dd><p>Request path</p></dd>
@@ -184,7 +184,7 @@ and provides (1) <code>print</code> and (2) <code>request</code> method</p>
 <dt><code>timeout</code></dt><dd><p>Seconds for the timeout of request</p></dd>
 
 </dl><p></div></p>
-<h3>Details</h3>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Details</h4>
 <p>This function is not supposed to be called directory.
 Instead, please use other specific functions.
 For available values for <code>path</code> and <code>...</code> (query),
@@ -208,7 +208,7 @@ please see <a href='https://www.zotero.org/support/dev/web_api/v3/basics'>https:
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
