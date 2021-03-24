@@ -1,0 +1,42 @@
+reference:
+- title: "Zotero Object"
+  desc: >
+    R6 class object generally used in `ztr4r` package
+- contents:
+  - Zotero
+- title: "Read Collections"
+  desc: >
+    Functions to read collections in your library or the contents in a specific collection
+- contents:
+  - ztr_read_collections
+  - ztr_read_collection
+- title: "Read Items"
+  desc: >
+    Functions to read items in your library or the contents in a specific item
+- contents:
+  - ztr_read_items
+  - ztr_read_item
+  - ztr_read_trash
+  - ztr_read_publications
+- title: "Read Searches"
+  desc: >
+    Functions to read all saved searches in the library or a specific search in the library
+- contents:
+  - ztr_read_searches
+  - ztr_read_search
+- title: "Read Tags"
+  desc: >
+    Functions to read tags in your library
+- contents:
+  - ztr_read_tags
+  - ztr_read_collection_tags
+  - ztr_read_items_tags
+  - ztr_read_item_tags
+  - ztr_read_trash_tags
+  - ztr_read_publications_tags
+- title: "Read Other Contents"
+  desc: >
+    Functions to read other contents
+- contents:
+  - ztr_read_privileges
+  - ztr_read_groups
