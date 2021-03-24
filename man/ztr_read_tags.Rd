@@ -2,14 +2,14 @@
 % Please edit documentation in R/api_read.R
 \name{ztr_read_tags}
 \alias{ztr_read_tags}
-\title{Read all tags in the library or tags of all types matching a specific name}
+\title{Read All Tags In The Library Or Tags Of All Types Matching A Specific Name}
 \usage{
-ztr_read_tags(zotero_object, tags = NULL, ..., timeout = 20)
+ztr_read_tags(zotero_object, tag = NULL, ..., timeout = 20)
 }
 \arguments{
-\item{zotero_object}{\code{Zotero} object}
+\item{zotero_object}{\code{Zotero} object.}
 
-\item{tags}{tag searching pattern}
+\item{tag}{URL encoded tag}
 
 \item{...}{Query inputs. See \strong{Read Requests} and \strong{Sorting and Pagination} in the \href{https://www.zotero.org/support/dev/web_api/v3/basics}{Zotero Web API Documents} for available query.}
 
@@ -19,7 +19,7 @@ ztr_read_tags(zotero_object, tags = NULL, ..., timeout = 20)
 \code{httr::response} object
 }
 \description{
-Read all tags in the library or tags of all types matching a specific name
+Read All Tags In The Library Or Tags Of All Types Matching A Specific Name
 }
 \examples{
 \dontrun{
@@ -27,13 +27,13 @@ ztr <- Zotero$new("ztr4r")
 
 # simple example
 ztr \%>\%
-  ztr_read_tags(tags = "tag=foo")
+  ztr_read_tags(tag = "tag=foo")
 
 # example with query
 ztr \%>\%
   ztr_read_tags(
-    tags = "tag=foo bar"
-    format = "json", sort = "dateAdded"
+    tag = "foo",
+    format = "json", limit = 25
   )
 }
 }

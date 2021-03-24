@@ -2,7 +2,7 @@
 % Please edit documentation in R/api_read.R
 \name{ztr_read_items}
 \alias{ztr_read_items}
-\title{Read items}
+\title{Read (Top-Level) Items In The Library, Excluding Trashed Items}
 \usage{
 ztr_read_items(
   zotero_object,
@@ -13,17 +13,17 @@ ztr_read_items(
 )
 }
 \arguments{
-\item{zotero_object}{\code{Zotero} object}
+\item{zotero_object}{\code{Zotero} object.}
 
 \item{collection}{Collection key. If specified, items within a specific collection will be retrieved.}
 
-\item{top}{Specify item levels (default: \code{FALSE})
+\item{top}{Item level (default: \code{FALSE}):
 \itemize{
-\item \code{FALSE}: All items in the library, excluding trashed items
-\item \code{TRUE }: \strong{Top-level} items in the library, excluding trashed items.
+\item \code{FALSE}: All the items in the library, excluding trashed items
+\item \code{TRUE }: \strong{Top-level} items in the library, excluding trashed items
 }}
 
-\item{...}{Query inputs. See \strong{Read Requests} and \strong{Sorting and Pagination} in the \href{https://www.zotero.org/support/dev/web_api/v3/basics}{Zotero Web API Documents} for available query.}
+\item{...}{Query inputs. See \strong{Read Requests}, \strong{Searching}, and \strong{Sorting and Pagination} in the \href{https://www.zotero.org/support/dev/web_api/v3/basics}{Zotero Web API Documents} for available query.}
 
 \item{timeout}{Seconds for the timeout of request (default: \code{20}).}
 }
@@ -31,7 +31,7 @@ ztr_read_items(
 \code{httr::response} object
 }
 \description{
-Read items
+Read (Top-Level) Items In The Library, Excluding Trashed Items
 }
 \examples{
 \dontrun{
@@ -41,18 +41,18 @@ ztr <- Zotero$new("ztr4r")
 ztr \%>\%
   ztr_read_items()
 
-# example with query: retrieve items
+# example with query: All the items in the library, excluding trashed items
 ztr \%>\%
   ztr_read_items(
     collection = NULL, top = TRUE,
-    format = "json", sort = "dateAdded"
+    format = "json", sort = "dateModified", direction = "asc", limit = 25, start = 0
   )
 
-# example with query: retrieve items in a specific collection
+# example with query: Top-level items in the library, excluding trashed items.
 ztr \%>\%
   ztr_read_items(
     collection = "foo", top = TRUE,
-    format = "json", sort = "dateAdded"
+    format = "json", sort = "dateModified", direction = "asc", limit = 25, start = 0
   )
 }
 }

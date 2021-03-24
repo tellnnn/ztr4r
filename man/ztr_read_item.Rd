@@ -2,18 +2,18 @@
 % Please edit documentation in R/api_read.R
 \name{ztr_read_item}
 \alias{ztr_read_item}
-\title{Read a specific item or child items within a specific item}
+\title{Read A Specific Item Or Child Items Under A Specific Item}
 \usage{
 ztr_read_item(zotero_object, item, child = FALSE, ..., timeout = 20)
 }
 \arguments{
-\item{zotero_object}{\code{Zotero} object}
+\item{zotero_object}{\code{Zotero} object.}
 
-\item{item}{Item key}
+\item{item}{Item key.}
 
-\item{child}{Specify whether to retrieve child items within a specific item Otherwise, a specific item will be retrieved.}
+\item{child}{Specify whether to retrieve child items under a specific item. Otherwise, a specific item will be retrieved.}
 
-\item{...}{Query inputs. See \strong{Read Requests} and \strong{Sorting and Pagination} in the \href{https://www.zotero.org/support/dev/web_api/v3/basics}{Zotero Web API Documents} for available query.}
+\item{...}{Query inputs. See \strong{Read Requests}, \strong{Searching}, and \strong{Sorting and Pagination} in the \href{https://www.zotero.org/support/dev/web_api/v3/basics}{Zotero Web API Documents} for available query.}
 
 \item{timeout}{Seconds for the timeout of request (default: \code{20}).}
 }
@@ -21,7 +21,7 @@ ztr_read_item(zotero_object, item, child = FALSE, ..., timeout = 20)
 \code{httr::response} object
 }
 \description{
-Read a specific item or child items within a specific item
+Read A Specific Item Or Child Items Under A Specific Item
 }
 \examples{
 \dontrun{
@@ -31,11 +31,11 @@ ztr <- Zotero$new("ztr4r")
 ztr \%>\%
   ztr_read_item(item = "foo")
 
-# example with query
+# example with query: child items under a specific item
 ztr \%>\%
   ztr_read_item(
     item = "foo", child = TRUE,
-    format = "json", sort = "dateAdded"
+    format = "json", sort = "dateModified", direction = "asc", limit = 25, start = 0
   )
 }
 }

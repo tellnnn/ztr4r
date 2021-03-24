@@ -2,16 +2,16 @@
 % Please edit documentation in R/api_read.R
 \name{ztr_read_collection}
 \alias{ztr_read_collection}
-\title{Read a specific collection or sub-collections within a specific collection}
+\title{Read A Specific Collection Or Sub-Collections Within A Specific Collection}
 \usage{
 ztr_read_collection(zotero_object, collection, sub = FALSE, ..., timeout = 20)
 }
 \arguments{
-\item{zotero_object}{\code{Zotero} object}
+\item{zotero_object}{\code{Zotero} object.}
 
-\item{collection}{Collection key}
+\item{collection}{Collection key.}
 
-\item{sub}{Specify whether to retrieve sub-collections within a specific collection. Otherwise, a specific collection will be retrieved.}
+\item{sub}{Specify whether to retrieve sub-collections within a specific collection. Otherwise, a specified collection will be retrieved.}
 
 \item{...}{Query inputs. See \strong{Read Requests} and \strong{Sorting and Pagination} in the \href{https://www.zotero.org/support/dev/web_api/v3/basics}{Zotero Web API Documents} for available query.}
 
@@ -21,7 +21,7 @@ ztr_read_collection(zotero_object, collection, sub = FALSE, ..., timeout = 20)
 \code{httr::response} object
 }
 \description{
-Read a specific collection or sub-collections within a specific collection
+Read A Specific Collection Or Sub-Collections Within A Specific Collection
 }
 \examples{
 \dontrun{
@@ -31,11 +31,11 @@ ztr <- Zotero$new("ztr4r")
 ztr \%>\%
   ztr_read_collection(collection = "foo")
 
-# example with query
+# example with query: sub-collections within a specific collection
 ztr \%>\%
   ztr_read_collection(
     collection = "foo", sub = TRUE,
-    format = "json", sort = "dateAdded"
+    format = "json", sort = "dateModified", direction = "asc", limit = 25, start = 0
   )
 }
 }

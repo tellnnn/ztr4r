@@ -2,14 +2,14 @@
 % Please edit documentation in R/api_read.R
 \name{ztr_read_collection_tags}
 \alias{ztr_read_collection_tags}
-\title{Read tags within a specific collection in the library}
+\title{Read Tags Within A Specific Collection In The Library}
 \usage{
 ztr_read_collection_tags(zotero_object, collection, ..., timeout = 20)
 }
 \arguments{
-\item{zotero_object}{\code{Zotero} object}
+\item{zotero_object}{\code{Zotero} object.}
 
-\item{collection}{Collection key}
+\item{collection}{Collection key.}
 
 \item{...}{Query inputs. See \strong{Read Requests} and \strong{Sorting and Pagination} in the \href{https://www.zotero.org/support/dev/web_api/v3/basics}{Zotero Web API Documents} for available query.}
 
@@ -19,7 +19,7 @@ ztr_read_collection_tags(zotero_object, collection, ..., timeout = 20)
 \code{httr::response} object
 }
 \description{
-Read tags within a specific collection in the library
+Read Tags Within A Specific Collection In The Library
 }
 \examples{
 \dontrun{
@@ -33,7 +33,7 @@ ztr \%>\%
 ztr \%>\%
   ztr_read_collection_tags(
     collection = "foo",
-    format = "json", sort = "dateAdded"
+    format = "json", limit = 25
   )
 }
 }

@@ -2,14 +2,14 @@
 % Please edit documentation in R/api_read.R
 \name{ztr_read_trash}
 \alias{ztr_read_trash}
-\title{Read trashed items}
+\title{Read Items In The Trash}
 \usage{
 ztr_read_trash(zotero_object, ..., timeout = 20)
 }
 \arguments{
-\item{zotero_object}{\code{Zotero} object}
+\item{zotero_object}{\code{Zotero} object.}
 
-\item{...}{Query inputs. See \strong{Read Requests} and \strong{Sorting and Pagination} in the \href{https://www.zotero.org/support/dev/web_api/v3/basics}{Zotero Web API Documents} for available query.}
+\item{...}{Query inputs. See \strong{Read Requests}, \strong{Searching}, and \strong{Sorting and Pagination} in the \href{https://www.zotero.org/support/dev/web_api/v3/basics}{Zotero Web API Documents} for available query.}
 
 \item{timeout}{Seconds for the timeout of request (default: \code{20}).}
 }
@@ -17,7 +17,7 @@ ztr_read_trash(zotero_object, ..., timeout = 20)
 \code{httr::response} object
 }
 \description{
-Read trashed items
+Read Items In The Trash
 }
 \examples{
 \dontrun{
@@ -30,7 +30,7 @@ ztr \%>\%
 # example with query
 ztr \%>\%
   ztr_read_trash(
-    format = "json", sort = "dateAdded"
+    format = "json", sort = "dateModified", direction = "asc", limit = 25, start = 0
   )
 }
 }

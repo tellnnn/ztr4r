@@ -2,12 +2,12 @@
 % Please edit documentation in R/api_read.R
 \name{ztr_read_trash_tags}
 \alias{ztr_read_trash_tags}
-\title{Read tags assigned to items in the trash}
+\title{Read Tags Assigned To Items In The Trash}
 \usage{
 ztr_read_trash_tags(zotero_object, ..., timeout = 20)
 }
 \arguments{
-\item{zotero_object}{\code{Zotero} object}
+\item{zotero_object}{\code{Zotero} object.}
 
 \item{...}{Query inputs. See \strong{Read Requests} and \strong{Sorting and Pagination} in the \href{https://www.zotero.org/support/dev/web_api/v3/basics}{Zotero Web API Documents} for available query.}
 
@@ -17,7 +17,7 @@ ztr_read_trash_tags(zotero_object, ..., timeout = 20)
 \code{httr::response} object
 }
 \description{
-Read tags assigned to items in the trash
+Read Tags Assigned To Items In The Trash
 }
 \examples{
 \dontrun{
@@ -30,7 +30,7 @@ ztr \%>\%
 # example with query
 ztr \%>\%
   ztr_read_trash_tags(
-    format = "json", sort = "dateAdded"
+    format = "json", limit = 25
   )
 }
 }

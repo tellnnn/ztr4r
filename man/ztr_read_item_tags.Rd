@@ -2,14 +2,14 @@
 % Please edit documentation in R/api_read.R
 \name{ztr_read_item_tags}
 \alias{ztr_read_item_tags}
-\title{Read tags associated with a specific item}
+\title{Read Tags Associated With A Specific Item}
 \usage{
 ztr_read_item_tags(zotero_object, item, ..., timeout = 20)
 }
 \arguments{
-\item{zotero_object}{\code{Zotero} object}
+\item{zotero_object}{\code{Zotero} object.}
 
-\item{item}{Item key}
+\item{item}{Item key.}
 
 \item{...}{Query inputs. See \strong{Read Requests} and \strong{Sorting and Pagination} in the \href{https://www.zotero.org/support/dev/web_api/v3/basics}{Zotero Web API Documents} for available query.}
 
@@ -19,7 +19,7 @@ ztr_read_item_tags(zotero_object, item, ..., timeout = 20)
 \code{httr::response} object
 }
 \description{
-Read tags associated with a specific item
+Read Tags Associated With A Specific Item
 }
 \examples{
 \dontrun{
@@ -33,7 +33,7 @@ ztr \%>\%
 ztr \%>\%
   ztr_read_item_tags(
     item = "foo",
-    format = "json", sort = "dateAdded"
+    format = "json", limit = 25
   )
 }
 }

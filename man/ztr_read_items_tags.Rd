@@ -2,7 +2,7 @@
 % Please edit documentation in R/api_read.R
 \name{ztr_read_items_tags}
 \alias{ztr_read_items_tags}
-\title{Read all tags assigned to items in the library or tags assigned to top-level items}
+\title{Read Tags Assigned To Items (In A Given Collection)}
 \usage{
 ztr_read_items_tags(
   zotero_object,
@@ -13,14 +13,14 @@ ztr_read_items_tags(
 )
 }
 \arguments{
-\item{zotero_object}{\code{Zotero} object}
+\item{zotero_object}{\code{Zotero} object.}
 
-\item{collection}{Collection key. Tags within a specific collection in the library will be retrieved.}
+\item{collection}{Collection key (default: \code{NULL}).}
 
-\item{top}{Specify item levels (default: \code{FALSE})
+\item{top}{Item level (default: \code{FALSE}):
 \itemize{
-\item \code{FALSE}: All tags in the library, with the ability to filter based on the items
-\item \code{TRUE }: Tags assigned to top-level items
+\item \code{FALSE}: All tags assigned to the items in the library/specific collection
+\item \code{TRUE }: All tags assigned to the \strong{top-level} items in the library/specific collection
 }}
 
 \item{...}{Query inputs. See \strong{Read Requests} and \strong{Sorting and Pagination} in the \href{https://www.zotero.org/support/dev/web_api/v3/basics}{Zotero Web API Documents} for available query.}
@@ -31,7 +31,13 @@ ztr_read_items_tags(
 \code{httr::response} object
 }
 \description{
-Read all tags assigned to items in the library or tags assigned to top-level items
+Read
+\enumerate{
+\item All Tags In The Library, With The Ability To Filter Based On The Items
+\item Tags Assigned To Top-Level Items
+\item Tags Assigned To Items In A Given Collection
+\item Tags Assigned To Top-Level Items In A Given Collection
+}
 }
 \examples{
 \dontrun{
@@ -41,18 +47,33 @@ ztr <- Zotero$new("ztr4r")
 ztr \%>\%
   ztr_read_items_tags()
 
-# example with query: retrieve items
+# example with query: all tags in the library
+ztr \%>\%
+  ztr_read_items_tags(
+    collection = NULL, top = FALSE,
+    format = "json", limit = 25
+  )
+
+# example with query: tags assigned to top-level items
 ztr \%>\%
   ztr_read_items_tags(
     collection = NULL, top = TRUE,
-    format = "json", sort = "dateAdded"
+    format = "json", limit = 25
   )
 
-# example with query: retrieve items in a specific collection
+# example with query: tags assigned to items in a given collection
+ztr \%>\%
+  ztr_read_items_tags(
+    collection = "foo", top = FALSE,
+    format = "json", limit = 25
+  )
+
+
+# example with query: tags assigned to top-level items in a given collection
 ztr \%>\%
   ztr_read_items_tags(
     collection = "foo", top = TRUE,
-    format = "json", sort = "dateAdded"
+    format = "json", limit = 25
   )
 }
 }

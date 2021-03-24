@@ -2,16 +2,16 @@
 % Please edit documentation in R/api_read.R
 \name{ztr_read_collections}
 \alias{ztr_read_collections}
-\title{Read collections}
+\title{Read (Top-Level) Collections In The Library}
 \usage{
 ztr_read_collections(zotero_object, top = FALSE, ..., timeout = 20)
 }
 \arguments{
-\item{zotero_object}{\code{Zotero} object}
+\item{zotero_object}{\code{Zotero} object.}
 
-\item{top}{Specify collection levels (default: \code{FALSE})
+\item{top}{Collection level (default: \code{FALSE}):
 \itemize{
-\item \code{FALSE}: Collections in the library
+\item \code{FALSE}: All the collections in the library
 \item \code{TRUE }: \strong{Top-level} collections in the library
 }}
 
@@ -23,7 +23,7 @@ ztr_read_collections(zotero_object, top = FALSE, ..., timeout = 20)
 \code{httr::response} object
 }
 \description{
-Read collections
+Read (Top-Level) Collections In The Library
 }
 \examples{
 \dontrun{
@@ -37,7 +37,7 @@ ztr \%>\%
 ztr \%>\%
   ztr_read_collections(
     top = TRUE,
-    format = "json", sort = "dateAdded"
+    format = "json", sort = "dateModified", direction = "asc", limit = 25, start = 0
   )
 }
 }
