@@ -1,0 +1,36 @@
+---
+title: "Read Requests in `ztr4r`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{api_read}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, echo = TRUE}
+# load ztr4r package
+library(ztr4r)
+
+# initialize Zotero object with a specific name assigned to a Zotero Web API key
+ztr <- Zotero$new("ztr4r")
+```
+
+# Read Collections
+
+## Read All Collections in the Library
+
+```{r}
+ztr %>% 
+  ztr_read_collections(top = FALSE)
+```
+
+# Items
+
+# Searches
