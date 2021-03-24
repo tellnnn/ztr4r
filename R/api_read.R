@@ -1,4 +1,62 @@
 # ------------------------------ #
+#       ztr_read_privileges      #
+# ------------------------------ #
+#' Read the User ID and Privileges of the Given API Key
+#'
+#' @param zotero_object `Zotero` object
+#' @param timeout Seconds for the timeout of request (default: `20`)
+#'
+#' @return `httr::response` object
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' ztr <- Zotero$new("ztr4r")
+#' ztr %>%
+#'   ztr_read_privileges()
+#' }
+ztr_read_privileges <- function(zotero_object, timeout = 20) {
+  stopifnot(zotero_object$privacy == "private")
+
+  zotero_object$request(
+    verb = "GET",
+    path = NULL,
+    key = TRUE,
+    timeout = timeout
+  )
+}
+
+
+# ------------------------------ #
+#         ztr_read_groups        #
+# ------------------------------ #
+#' Read Groups Assigned to A Specific User
+#'
+#' @param zotero_object `Zotero` object
+#' @param timeout Seconds for the timeout of request (default: `20`)
+#'
+#' @return `httr::response` object
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' ztr <- Zotero$new("ztr4r")
+#' ztr %>%
+#'   ztr_read_groups()
+#' }
+ztr_read_groups <- function(zotero_object, timeout = 20) {
+  stopifnot(zotero_object$library_type == "users")
+
+  zotero_object$request(
+    verb = "GET",
+    path = "groups",
+    key = FALSE,
+    timeout = timeout
+  )
+}
+
+
+# ------------------------------ #
 #      ztr_read_collections      #
 # ------------------------------ #
 #' Read collections
@@ -32,6 +90,7 @@ ztr_read_collections <- function(zotero_object, top = FALSE, ..., timeout = 20) 
   zotero_object$request(
     verb = "GET",
     path = c("collections", if (top) {"top"}),
+    key = FALSE,
     ...,
     timeout = 20
   )
@@ -76,6 +135,7 @@ ztr_read_collection <- function(zotero_object, collection, sub = FALSE, ..., tim
   zotero_object$request(
     verb = "GET",
     path = c("collections", collection, if (sub) {"collections"}),
+    key = FALSE,
     ...,
     timeout = 20
   )
@@ -130,6 +190,7 @@ ztr_read_items <- function(zotero_object, collection = NULL, top = FALSE, ..., t
   zotero_object$request(
     verb = "GET",
     path = path,
+    key = FALSE,
     ...,
     timeout = 20
   )
@@ -174,6 +235,7 @@ ztr_read_item <- function(zotero_object, item, child = FALSE, ..., timeout = 20)
   zotero_object$request(
     verb = "GET",
     path = c("items", item, if (child) {"children"}),
+    key = FALSE,
     ...,
     timeout = 20
   )
@@ -210,6 +272,7 @@ ztr_read_trash <- function(zotero_object, ..., timeout = 20) {
   zotero_object$request(
     verb = "GET",
     path = c("items", "trash"),
+    key = FALSE,
     ...,
     timeout = 20
   )
@@ -246,6 +309,7 @@ ztr_read_publications <- function(zotero_object, ..., timeout = 20) {
   zotero_object$request(
     verb = "GET",
     path = c("publications", "items"),
+    key = FALSE,
     ...,
     timeout = 20
   )
@@ -284,6 +348,7 @@ ztr_read_tags <- function(zotero_object, tags = NULL, ..., timeout = 20) {
   zotero_object$request(
     verb = "GET",
     path = c("tags", if (!is.null(tags)) {tags}),
+    key = FALSE,
     ...,
     timeout = 20
   )
@@ -327,6 +392,7 @@ ztr_read_collection_tags <- function(zotero_object, collection, ..., timeout = 2
   zotero_object$request(
     verb = "GET",
     path = c("collections", collection, "tags"),
+    key = FALSE,
     ...,
     timeout = 20
   )
@@ -381,6 +447,7 @@ ztr_read_items_tags <- function(zotero_object, collection = NULL, top = FALSE, .
   zotero_object$request(
     verb = "GET",
     path = path,
+    key = FALSE,
     ...,
     timeout = 20
   )
@@ -424,6 +491,7 @@ ztr_read_item_tags <- function(zotero_object, item, ..., timeout = 20) {
   zotero_object$request(
     verb = "GET",
     path = c("items", item, "tags"),
+    key = FALSE,
     ...,
     timeout = 20
   )
@@ -460,6 +528,7 @@ ztr_read_trash_tags <- function(zotero_object, ..., timeout = 20) {
   zotero_object$request(
     verb = "GET",
     path = c("items", "trash", "tags"),
+    key = FALSE,
     ...,
     timeout = 20
   )
@@ -496,6 +565,7 @@ ztr_read_publications_tags <- function(zotero_object, ..., timeout = 20) {
   zotero_object$request(
     verb = "GET",
     path = c("publications", "items", "tags"),
+    key = FALSE,
     ...,
     timeout = 20
   )

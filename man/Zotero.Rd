@@ -4,27 +4,26 @@
 \alias{Zotero}
 \title{Zotero Class Object}
 \description{
-\code{Zotero} object stores
-\itemize{
-\item user information
-\item cached requests
-} and provides
-\itemize{
-\item \code{print} method
-\item \code{request} method
-}
+\code{Zotero} object
+stores (1) user information and (2) cached request table,
+and provides (1) \code{print} and (2) \code{request} method
 }
 \details{
 The \code{request} method are wrapped with
 \itemize{
 \item \verb{ztr_read_*}
 \item \verb{ztr_write_*}
-\item \verb{ztr_search_*}
 }
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
+\item{\code{name}}{Name of Zotero Web API Key}
+
+\item{\code{library_type}}{Library Type. \code{"users"} or \code{"groups"}}
+
+\item{\code{privacy}}{Privacy Setting of the library. \code{"private"} or \code{"public"}}
+
 \item{\code{cache}}{Cached request table}
 }
 \if{html}{\out{</div>}}
@@ -76,24 +75,29 @@ None
 \subsection{Method \code{request()}}{
 Send request
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Zotero$request(verb, path, ..., timeout = 20)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Zotero$request(verb, path, key, ..., timeout)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{verb}}{Request verb. Either \code{"GET"} or \code{"POST"}.}
+\item{\code{verb}}{Request verb. Either \code{"GET"} or \code{"POST"}}
 
-\item{\code{path}}{Request path.}
+\item{\code{path}}{Request path}
 
-\item{\code{...}}{Query inputs.}
+\item{\code{key}}{Flag to indicate whether read privileges or not}
 
-\item{\code{timeout}}{Seconds for the timeout of request.}
+\item{\code{...}}{Query inputs}
+
+\item{\code{timeout}}{Seconds for the timeout of request}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Details}{
-This function is not supposed to be called directory. Instead, please use other specific functions. For available values for \code{path} and \code{...} (query), please see \url{https://www.zotero.org/support/dev/web_api/v3/basics}
+This function is not supposed to be called directory.
+Instead, please use other specific functions.
+For available values for \code{path} and \code{...} (query),
+please see \url{https://www.zotero.org/support/dev/web_api/v3/basics}
 }
 
 }
