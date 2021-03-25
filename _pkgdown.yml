@@ -1,3 +1,32 @@
+authors:
+  Teruaki Kido:
+    href: https://tellnnn.netlify.app/
+
+navbar:
+  structure:
+    left:
+    - home
+    - intro
+    - reference
+    - articles
+    - tutorials
+    - news
+    right: github
+  components:
+    home:
+      icon: fas fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+
+repo:
+  url:
+    home: https://github.com/tellnnn/ztr4r
+    source: https://github.com/tellnnn/ztr4r/tree/master
+    issue: https://github.com/tellnnn/ztr4r/issues
+    user: https://github.com/tellnnn
+
 reference:
 - title: "Zotero Object"
   desc: >
